@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Review Form</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    b{
+        color: red;
+        font-family: cursive;
+        font-size: 30px;
+    }
+</style>
+<body>
+<div class="container">
+<div class="row">
+    <div class="offset-md-3 col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            <center><h3> Please Enter Your Reviews</h3></center>
+            {{ fform }}<br>
+            <center>
+            <input type="submit" value="send" class="btn btn-success">
+            <input type="reset" value="clear" class="btn btn-danger">
+            </center>
+        </form>
+        {% if review %}
+            <h3> Your Review Are....</h3>
+        {% endif %}
+        {% if review %}
+            {% for i in review %}
+                    <b> product_id: {{ i.product_id|capfirst }}</b><br>
+                    review_title:{{ i.review_title }}<br>
+                    review_ratings:{{ i.review_ratings }}<br>
+                    review_content:{{ i.review_content }}<br><br>
+            {% endfor %}
+        {% else %}
+        <h1> No Review Are Available</h1>
+        {% endif %}
+    </div>
+</div>
+</div>
+</body>
+</html>
